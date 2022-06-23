@@ -37,4 +37,9 @@ describe('server/app.js', function() {
       done();
     });
   });
+  it('should have a H1 with the text "Hello World"', () =>
+  pageObject
+    .evaluate(() => document.querySelector('h1').innerText)
+    .then(heading => expect(heading).to.equal('Hello World'))
+);
 })
