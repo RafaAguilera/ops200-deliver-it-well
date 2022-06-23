@@ -38,14 +38,14 @@ describe('server/app.js', function() {
     });
   });
 
-  it('page says hello world', (done) => {
+  it('page says "this is a test page"', (done) => {
     chai.request(server)
-      .get('/')
-      .end((err, res) => {
-        expect(err).not.exist;
-        expect(res.querySelector('h1').innerText);
-        done();
-      });
+    .get('/')
+    .end((err, res) => {
+      expect(err).not.exist;
+      expect(JSON.stringify(res.text)).to.contain('this is a test page');
+      done();
     });
+  });
   
 })
