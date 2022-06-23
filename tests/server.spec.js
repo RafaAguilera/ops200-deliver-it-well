@@ -37,9 +37,15 @@ describe('server/app.js', function() {
       done();
     });
   });
-  it('should have a H1 with the text "Hello World"', () =>
-  pageObject
-    .evaluate(() => document.querySelector('h1').innerText)
-    .then(heading => expect(heading).to.equal('Hello World'))
-);
+
+  it('page says hello world', (done) => {
+    chai.request(server)
+      .get('/')
+      .end((err, res) => {
+        expect(err).not.exist;
+        expect(res.querySelector('h1').innerText);
+        done();
+      });
+    });
+  
 })
